@@ -1,3 +1,9 @@
+import CreatePost from "./postPosts/page";
+
 export default function Home() {
-  return <div></div>;
+  return (
+    <div>
+      <CreatePost />
+    </div>
+  );
 }
