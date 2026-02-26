@@ -7,16 +7,64 @@ datasource db {
 }
 
 model User {
-  id    String @id @default(cuid())
-  name  String
-  email String @unique
-  posts Post[]
+  id        String @id @default(nanoid())
+  clerkId   String @unique
+  username  String @unique
+  email     String @unique
+
+  name      String?
+  bio       String?
+  imageUrl  String?
+
+  posts     Post[]
+  likes     Like[]
+  comments  Comment[]
+
+  followers Follow[] @relation("followers")
+  following Follow[] @relation("following")
 }
 
 model Post {
-  id       String @id @default(cuid())
-  title    String
-  content  String
-  owner   User   @relation(fields: [ownerId], references: [id])
-  ownerId String
+  id        String @id @default(cuid())
+  title     String
+  content   String
+  imageUrl  String
+  caption   String?
+
+  owner     User   @relation(fields: [ownerId], references: [id])
+  ownerId   String
+
+  likes     Like[]
+  comments  Comment[]
+}
+
+model Follow {
+  id          String @id @default(cuid())
+
+  follower    User @relation("following", fields: [followerId], references: [id])
+  followerId  String
+
+  following   User @relation("followers", fields: [followingId], references: [id])
+  followingId String
+}
+
+model Like {
+  id     String @id @default(cuid())
+
+  user   User @relation(fields: [userId], references: [id])
+  userId String
+
+  post   Post @relation(fields: [postId], references: [id])
+  postId String
+}
+
+model Comment {
+  id      String @id @default(cuid())
+  content String
+
+  user    User @relation(fields: [userId], references: [id])
+  userId  String
+
+  post    Post @relation(fields: [postId], references: [id])
+  postId  String
 }
