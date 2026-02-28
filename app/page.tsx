@@ -1,9 +1,9 @@
-import CreatePost from "./postPosts/page";
+import GetPosts from "./getPosts/page";
 
 export default function Home() {
   return (
     <div>
-      <CreatePost />
+      <GetPosts />
     </div>
   );
 }

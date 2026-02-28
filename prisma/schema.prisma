@@ -25,18 +25,19 @@ model User {
 }
 
 model Post {
-  id        String @id @default(cuid())
+  id        String   @id @default(cuid())
   title     String
   content   String
-  imageUrl  String
+  imageUrls String[]  
   caption   String?
 
-  owner     User   @relation(fields: [ownerId], references: [id])
+  owner     User     @relation(fields: [ownerId], references: [id])
   ownerId   String
 
   likes     Like[]
   comments  Comment[]
 }
+
 
 model Follow {
   id          String @id @default(cuid())
