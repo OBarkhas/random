@@ -1,5 +1,6 @@
 "use client";
 
+import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 
 interface Post {
@@ -13,6 +14,7 @@ interface Post {
 
 export default function GetPosts() {
   const [posts, setPosts] = useState<Post[]>([]);
+  const { user } = useUser();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedIndices, setSelectedIndices] = useState<{
     [key: string]: number;
@@ -64,6 +66,7 @@ export default function GetPosts() {
             key={post.id}
             className="bg-white border border-gray-200 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow"
           >
+            <div>{user?.firstName}</div>
             <h2 className="font-bold text-2xl text-gray-800">{post.title}</h2>
             <p className="mt-2 text-gray-700">{post.content}</p>
             {post.caption && (

@@ -17,7 +17,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       router.push("/");
     }
   }, [isSignedIn, isAuthPage, router]);
-
   return (
     <div className="flex min-h-screen bg-gray-50">
       <SignedIn>
@@ -41,7 +40,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <SignedIn>
           <header className="flex justify-between items-center p-4 h-16 border-b bg-white shadow-sm">
             <h1 className="text-xl font-semibold text-gray-800">
-              Welcome, <span className="text-teal-600">{user?.username}</span>!
+              Welcome, <span className="text-teal-600">{user?.firstName}</span>!
             </h1>
           </header>
         </SignedIn>

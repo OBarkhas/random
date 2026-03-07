@@ -4,10 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Home,
-  Bookmark,
   UserRoundIcon,
   Plus,
-  Album,
   Search,
   type LucideIcon,
 } from "lucide-react";
@@ -21,11 +19,9 @@ type SidebarItem = {
 
 const sidebarItems: SidebarItem[] = [
   { id: "home", href: "/", icon: Home, label: "Home" },
-  { id: "profile", href: "/profile", icon: UserRoundIcon, label: "Profile" },
-  { id: "bookmark", href: "/bookmarks", icon: Bookmark, label: "Bookmarks" },
   { id: "add", href: "/postPosts", icon: Plus, label: "Add Post" },
-  { id: "album", href: "/posts", icon: Album, label: "My Posts" },
   { id: "search", href: "/searchUser", icon: Search, label: "Search" },
+  { id: "profile", href: "/profile", icon: UserRoundIcon, label: "Profile" },
 ];
 
 export default function Sidebar() {
