@@ -21,7 +21,7 @@ const sidebarItems: SidebarItem[] = [
   { id: "home", href: "/", icon: Home, label: "Home" },
   { id: "add", href: "/postPosts", icon: Plus, label: "Add Post" },
   { id: "search", href: "/searchUser", icon: Search, label: "Search" },
-  { id: "profile", href: "/profile", icon: UserRoundIcon, label: "Profile" },
+  { id: "profile", href: "/getMyPosts", icon: UserRoundIcon, label: "Profile" },
 ];
 
 export default function Sidebar() {
