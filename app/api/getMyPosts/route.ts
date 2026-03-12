@@ -8,21 +8,40 @@ export async function GET() {
   if (!userId) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
+
   const user = await prisma.user.findUnique({
     where: { clerkId: userId },
+    include: {
+      followers: true,
+      following: true,
+      posts: {
+        orderBy: {
+          id: "desc",
+        },
+        include: {
+          likes: true,
+          comments: true,
+        },
+      },
+    },
   });
+
   if (!user) {
     return NextResponse.json({ message: "User not found" }, { status: 404 });
   }
-  const posts = await prisma.post.findMany({
-    where: { ownerId: user.id },
-    orderBy: {
-      id: "desc",
+
+  return NextResponse.json({
+    user: {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      name: user.name,
+      bio: user.bio,
+      imageUrl: user.imageUrl,
+      followersCount: user.followers.length,
+      followingCount: user.following.length,
+      postsCount: user.posts.length,
     },
-    include: {
-      likes: true,
-      comments: true,
-    },
+    posts: user.posts,
   });
-  return NextResponse.json(posts);
 }
