@@ -39,8 +39,7 @@ export default function SignupPage() {
       if (!res.ok) {
         setError(data.error || "Unknown error");
       } else {
-        // ✅ Амжилттай signup бол home page руу redirect
-        router.push("/");
+        router.push("/signin");
       }
     } catch (err) {
       console.error(err);
